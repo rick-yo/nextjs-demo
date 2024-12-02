@@ -6,11 +6,19 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/ssg',
+        source: '/_next/data/:id*',
         headers: [
           {
-            key: 'x-custom-header',
-            value: 'my custom header value',
+            key: 'Vercel-CDN-Cache-Control',
+            value: 'max-age=3600',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'max-age=60',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'max-age=10',
           },
         ],
       },
